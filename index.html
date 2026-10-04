@@ -11,6 +11,7 @@
     if (location.hash === '#contactCard') { location.replace('college.html' + location.search + '#contactCard'); }
   </script>
   <script src="js/parcours.js" data-page="hub"></script>
+  <script src="js/entete.js" defer></script>
   <style>
     :root{
       --bg:#f5f7fb; --card:#ffffff; --ink:#111827; --muted:#5b6474; --line:#e5e7eb;
@@ -33,9 +34,10 @@
 
     /* En-tête logos */
     .top{background:rgba(255,255,255,.75);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-    .topIn{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:clamp(14px,4vw,44px);flex-wrap:wrap}
-    .topIn img{height:38px;max-width:150px;object-fit:contain;display:block;transition:transform .3s ease}
-    .topIn a:hover img{transform:translateY(-2px)}
+    .topIn{max-width:1180px;margin:0 auto;padding:12px 20px}
+    .topIn .headerLogos a{transition:opacity .2s ease}
+    .topIn .headerLogos a:hover{opacity:.75}
+    @media (max-width:768px){.topIn{padding:10px 0}}
 
     main{max-width:1080px;margin:0 auto;padding:clamp(28px,6vw,60px) 20px 120px}
 
@@ -98,23 +100,44 @@
     .path:hover .go i::before{animation:ring 1.4s ease-out infinite}
     @keyframes ring{0%{opacity:.6;transform:scale(.8)}100%{opacity:0;transform:scale(1.5)}}
     .go svg{width:20px;height:20px}
+    .goShort{display:none}
     .mark{position:absolute;right:-26px;bottom:-30px;width:180px;height:180px;z-index:-1;opacity:.1;color:var(--c);
       transition:transform .9s cubic-bezier(.2,.9,.25,1),opacity .5s ease}
     .path:hover .mark{transform:rotate(-14deg) scale(1.12);opacity:.18}
 
     /* Contact */
     .foot{margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;opacity:0;animation:fade .8s ease forwards 1.9s}
-    .foot a{display:flex;flex-direction:column;gap:3px;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.75);
-      border:1px solid var(--line);text-decoration:none;font-size:14px;transition:transform .3s ease,border-color .3s ease}
-    .foot a:hover{transform:translateY(-3px);border-color:#c7d2fe}
-    .foot small{font-size:12px;color:var(--muted);font-weight:700}
+    .ci{--ic:#2563eb;--ib:rgba(37,99,235,.1);display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.82);
+      border:1px solid var(--line);text-decoration:none;font-size:14.5px;font-weight:700;position:relative;overflow:hidden;
+      transition:transform .35s cubic-bezier(.2,.9,.25,1.2),border-color .3s ease,box-shadow .35s ease}
+    .ci.c1{--ic:#be163a;--ib:rgba(190,22,58,.1)} .ci.c2,.ci.c3{--ic:#16a34a;--ib:rgba(22,163,74,.1)} .ci.c4{--ic:#6d28d9;--ib:rgba(109,40,217,.1)}
+    .ci:hover,.ci:focus-visible{transform:translateY(-4px);border-color:var(--ic);box-shadow:0 18px 34px -18px var(--ic)}
+    .ci:focus-visible{outline:3px solid var(--ic);outline-offset:3px}
+    .ciIcon{flex:0 0 44px;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;color:var(--ic);background:var(--ib);
+      transition:transform .45s cubic-bezier(.2,.9,.25,1.4),background .3s ease,color .3s ease}
+    .ciIcon svg{width:22px;height:22px}
+    .ci:hover .ciIcon{transform:rotate(-8deg) scale(1.08);background:var(--ic);color:#fff}
+    .ciText{display:flex;flex-direction:column;gap:2px;min-width:0}
+    .ciText small{font-size:11.5px;color:var(--muted);font-weight:700;letter-spacing:.01em}
+    .ciText span{overflow-wrap:anywhere}
+    .ciArrow{width:18px;height:18px;margin-left:auto;flex:0 0 auto;color:var(--ic);opacity:0;transform:translate(-4px,4px);transition:opacity .25s ease,transform .3s ease}
+    .ci:hover .ciArrow{opacity:1;transform:none}
     .credit{margin-top:22px;text-align:center;color:var(--muted);font-size:12.5px}
 
     @media (max-width:760px){
-      .paths{grid-template-columns:1fr}
-      .path{min-height:0;padding:24px 22px 22px}
-      .mark{width:130px;height:130px}
-      .topIn img{height:30px;max-width:110px}
+      .paths{grid-template-columns:1fr 1fr;gap:10px}
+      .path{min-height:0;padding:16px 13px 14px;border-radius:20px}
+      .path::after{height:5px}
+      .levels{gap:4px;margin-bottom:14px}
+      .levels span{padding:4px 7px;font-size:10.5px}
+      .path h2{font-size:clamp(19px,5.6vw,24px)}
+      .path p{font-size:12.5px;line-height:1.45;margin-top:8px}
+      .go{padding-top:14px;gap:8px;font-size:12.5px}
+      .go i{width:34px;height:34px;flex:0 0 34px}
+      .go svg{width:16px;height:16px}
+      .goTxt{display:none}
+      .goShort{display:inline}
+      .mark{width:90px;height:90px;right:-18px;bottom:-20px}
       .unit{font-size:12.5px;border-radius:18px}
     }
     @media (prefers-reduced-motion: reduce){
@@ -129,10 +152,14 @@
 
   <header class="top">
     <div class="topIn">
-      <a href="https://www.iledefrance.ars.sante.fr/" target="_blank" rel="noopener" aria-label="Agence Régionale de Santé Île-de-France"><img src="img/ARS.png" alt="Agence Régionale de Santé Île-de-France"></a>
-      <a href="https://www.ameli.fr/assure/sante/themes/vaccination/vaccins-recommandes" target="_blank" rel="noopener" aria-label="Assurance Maladie"><img src="img/AM.png" alt="Assurance Maladie"></a>
-      <a href="https://www.ghsif.fr/" target="_blank" rel="noopener" aria-label="Groupe Hospitalier de Melun"><img src="img/CHMELUN.png" alt="Groupe Hospitalier de Melun"></a>
-      <a href="#contact" aria-label="Équipe Mobile de Vaccination"><img src="img/EMV.png" alt="Équipe Mobile de Vaccination"></a>
+      <div class="headerLogos">
+        <a href="https://www.iledefrance.ars.sante.fr/" target="_blank" rel="noopener" aria-label="Agence Régionale de Santé Île-de-France"><img src="img/ARS.png" alt="Agence Régionale de Santé Île-de-France"></a>
+        <a href="https://www.iledefrance.fr/" target="_blank" rel="noopener" aria-label="Région Île-de-France"><img src="img/region.png" alt="Région Île-de-France"></a>
+        <a href="https://www.seine-et-marne.fr/" target="_blank" rel="noopener" aria-label="Département de Seine-et-Marne"><img src="img/departement.png" alt="Département de Seine-et-Marne"></a>
+        <a href="https://www.ameli.fr/assure/sante/themes/vaccination/vaccins-recommandes" target="_blank" rel="noopener" aria-label="Assurance Maladie"><img src="img/AM.png" alt="Assurance Maladie"></a>
+        <a href="https://www.ghsif.fr/" target="_blank" rel="noopener" aria-label="Groupe Hospitalier de Melun"><img src="img/CHMELUN.png" alt="Groupe Hospitalier de Melun"></a>
+        <a href="#contact" aria-label="Équipe Mobile de Vaccination"><img src="img/EMV.png" alt="Équipe Mobile de Vaccination"></a>
+      </div>
     </div>
   </header>
 
@@ -163,7 +190,7 @@
         <div class="levels"><span>5e</span><span>4e</span></div>
         <h2>Vaccination <b>au collège</b></h2>
         <p>Informations sur les vaccins, dates de vaccination dans les collèges et autorisation parentale.</p>
-        <div class="go"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i>Accéder au parcours collège</div>
+        <div class="go"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i><span class="goTxt">Accéder au parcours collège</span><span class="goShort">Entrer</span></div>
         <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg>
       </a>
 
@@ -171,16 +198,32 @@
         <div class="levels"><span>Seconde</span><span>Première</span><span>Terminale</span></div>
         <h2>Vaccination <b>au lycée</b></h2>
         <p>Vérifier et compléter ses vaccinations, HPV, méningocoques ACWY et B, rappels.</p>
-        <div class="go"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i>Accéder au parcours lycée</div>
+        <div class="go"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i><span class="goTxt">Accéder au parcours lycée</span><span class="goShort">Entrer</span></div>
         <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-6h6v6"/><path d="M12 4V1.5"/></svg>
       </a>
     </section>
 
     <section class="foot" id="contact" aria-label="Contact">
-      <a href="https://maps.app.goo.gl/zGLgVufgVPTTqRAg8" target="_blank" rel="noopener"><small>Adresse</small>8 Rue de Vaux, 77000 Melun</a>
-      <a href="tel:0181742850"><small>Téléphone</small>01 81 74 28 50</a>
-      <a href="tel:0181743247"><small>Téléphone</small>01 81 74 32 47</a>
-      <a href="mailto:vaccin-hpv@ghsif.fr"><small>Email</small>vaccin-hpv@ghsif.fr</a>
+      <a class="ci c1" href="https://maps.app.goo.gl/zGLgVufgVPTTqRAg8" target="_blank" rel="noopener">
+        <span class="ciIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.6"/></svg></span>
+        <span class="ciText"><small>Adresse</small><span>8 Rue de Vaux, 77000 Melun</span></span>
+        <svg class="ciArrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+      <a class="ci c2" href="tel:0181742850">
+        <span class="ciIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h3.5l1.8 4.6-2.3 1.4a11 11 0 0 0 7 7l1.4-2.3L21 15.5V19a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg></span>
+        <span class="ciText"><small>Téléphone</small><span>01 81 74 28 50</span></span>
+        <svg class="ciArrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+      <a class="ci c3" href="tel:0181743247">
+        <span class="ciIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h3.5l1.8 4.6-2.3 1.4a11 11 0 0 0 7 7l1.4-2.3L21 15.5V19a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg></span>
+        <span class="ciText"><small>Téléphone</small><span>01 81 74 32 47</span></span>
+        <svg class="ciArrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+      <a class="ci c4" href="mailto:vaccin-hpv@ghsif.fr">
+        <span class="ciIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg></span>
+        <span class="ciText"><small>Email</small><span>vaccin-hpv@ghsif.fr</span></span>
+        <svg class="ciArrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
     </section>
     <p class="credit">Unité de santé publique de l’hôpital de Melun – équipe mobile de vaccination</p>
   </main>

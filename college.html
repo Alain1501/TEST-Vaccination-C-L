@@ -641,6 +641,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, .btn:focus-visible,
 .contactItem { justify-content: space-between; }
 .contactArrow { width: 18px; height: 18px; margin-left: 8px; opacity: 0; transform: translateX(-4px); transition: opacity .2s ease, transform .2s ease; flex-shrink: 0; color: var(--primary); }
 .contactItem:hover .contactArrow { opacity: .85; transform: translateX(0); }
+/* ===== FAQ : titres de rubrique ===== */
+.faqSectionHead { margin: 22px 2px 4px; font-weight: 800; font-size: 15px; color: var(--accent); }
+.faqSectionHead:first-child { margin-top: 4px; }
 </style>
         <link href="../../Documents/Pinegrow%20Projects/Tailwind-CSS-20260203-211032/tailwind_theme/tailwind.css" rel="stylesheet" type="text/css">
     </head>
@@ -2017,7 +2020,17 @@ div.addEventListener('click', (e) => {
     els.faqTitle.textContent = t(faqData?.meta?.title, 'Questions fréquentes');
 
     els.faqList.innerHTML = '';
+    let lastSection = null;
     items.forEach((it, idx) => {
+      // Titre de rubrique avant la première question de chaque section (vue complète, sans recherche)
+      if(!q && activeSection === 'all' && it.section !== lastSection){
+        lastSection = it.section;
+        const sec = (faqData?.sections || []).find(x => (x.key || x.id) === it.section);
+        const head = document.createElement('div');
+        head.className = 'faqSectionHead';
+        head.textContent = t(sec?.title, '');
+        els.faqList.appendChild(head);
+      }
       // Structure et mécanisme repris du site USP : grille CSS 0fr -> 1fr
       // (pas de calcul JS de hauteur), icône circulaire qui pivote à l'ouverture.
       const qId = `faqQ${idx}`, rId = `faqR${idx}`;

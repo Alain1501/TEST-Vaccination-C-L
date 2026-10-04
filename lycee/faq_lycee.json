@@ -59,7 +59,7 @@
     },
     "parcours": "lycee",
     "school_year": "2026-2027",
-    "last_update": "2026-10-03",
+    "last_update": "2026-10-04",
     "_note": "Contenu medical aligne sur data/vaccine_recommendations.json. Le champ refs indique quelle recommandation chaque reponse utilise."
   },
   "sections": [
@@ -115,7 +115,7 @@
         "fr": "Pourquoi parler de vaccination au lycée ?"
       },
       "a": {
-        "fr": "Le lycée est un bon moment pour faire le point sur ses vaccinations. Certaines vaccinations prévues à l'adolescence n'ont pas toujours été réalisées, et d'autres bénéficient d'un rattrapage jusqu'au début de l'âge adulte. C'est aussi une période où le risque de certaines infections, comme celles à méningocoques, augmente."
+        "fr": "Le lycée est un bon moment pour faire le point sur ses vaccinations. L'adolescence est une période où plusieurs vaccinations sont recommandées ou doivent être mises à jour, et certaines bénéficient d'un rattrapage jusqu'au début de l'âge adulte. La vaccination au lycée permet de proposer cette protection dans un cadre organisé, avec des professionnels de santé formés et un suivi adapté."
       }
     },
     {
@@ -150,7 +150,7 @@
         "fr": "Qu'est-ce que le HPV ?"
       },
       "a": {
-        "fr": "Le HPV, ou papillomavirus humain, est un virus très fréquent qui se transmet lors de contacts intimes. La plupart des personnes y sont exposées au cours de leur vie, souvent sans le savoir. L'infection disparaît le plus souvent seule, mais certains types de HPV peuvent persister et provoquer des années plus tard des lésions précancéreuses ou des cancers. La vaccination protège contre les types de HPV les plus souvent en cause."
+        "fr": "Le HPV, ou papillomavirus humain, est un groupe de virus très fréquents. La plupart des personnes seront exposées à un HPV au cours de leur vie, souvent sans le savoir, car l'infection ne provoque généralement aucun symptôme. Dans la majorité des cas, elle disparaît spontanément. Certains types de HPV peuvent cependant persister et, plusieurs années plus tard, être à l'origine de certaines lésions précancéreuses ou de certains cancers. La vaccination permet de prévenir une partie importante de ces infections."
       }
     },
     {
@@ -163,7 +163,7 @@
         "fr": "Quelles maladies le HPV peut-il provoquer ?"
       },
       "a": {
-        "fr": "Certains HPV peuvent être à l'origine de cancers du col de l'utérus, de l'anus, de la vulve, du vagin, du pénis et de la gorge. D'autres provoquent des verrues génitales. Le vaccin protège contre les principaux types responsables de ces maladies, chez les filles comme chez les garçons."
+        "fr": "La plupart des infections à HPV disparaissent spontanément sans conséquence. Certains types de HPV peuvent toutefois persister, contribuer au développement de plusieurs cancers, notamment du col de l'utérus, de l'anus, du pénis, de la vulve, du vagin et de certaines régions ORL. La vaccination permet de réduire le risque d'infection par les principaux types de HPV responsables de ces maladies."
       }
     },
     {
@@ -176,7 +176,7 @@
         "fr": "Le vaccin HPV est-il lié à la sexualité ?"
       },
       "a": {
-        "fr": "Non. C'est une vaccination de prévention, proposée à toutes les filles et à tous les garçons. Elle est plus efficace lorsqu'elle est faite tôt, avant toute exposition au virus. La proposer ne dit rien de la vie privée du jeune et ne constitue aucun jugement."
+        "fr": "Non. Le vaccin HPV est une vaccination de prévention contre une infection virale très fréquente. Il est recommandé à l'adolescence car la protection est optimale lorsqu'il est administré avant une éventuelle exposition au virus. Proposer ce vaccin à un adolescent ne signifie donc pas qu'il est sexuellement actif et ne modifie pas les comportements sexuels."
       }
     },
     {
@@ -241,7 +241,7 @@
         "fr": "Combien de doses sont nécessaires pour le vaccin HPV ?"
       },
       "a": {
-        "fr": "Cela dépend de l'âge à la première dose. Si la vaccination commence avant 15 ans, 2 doses espacées d'au moins 6 mois suffisent. Si elle commence à partir de 15 ans, 3 doses sont nécessaires. La deuxième dose est faite 2 mois après la première et la troisième 6 mois après la première, en moins d'un an."
+        "fr": "Lorsque la vaccination HPV débute entre 11 et 14 ans révolus, le schéma recommandé comprend 2 doses espacées d'au moins 6 mois. À partir de 15 ans, le schéma comporte 3 doses, la deuxième 2 mois après la première et la troisième 6 mois après la première. Le carnet de santé est vérifié afin de déterminer le schéma adapté à chaque élève."
       }
     },
     {
@@ -268,7 +268,7 @@
         "fr": "Qu'est-ce que le méningocoque ?"
       },
       "a": {
-        "fr": "Le méningocoque est une bactérie qui peut se trouver dans la gorge sans provoquer de symptôme. Dans de rares cas, elle provoque une infection grave. Il en existe plusieurs groupes, appelés sérogroupes, dont les principaux en France sont A, B, C, W et Y."
+        "fr": "Le méningocoque est une bactérie qui peut provoquer des infections graves, notamment des méningites et des septicémies. Ces infections peuvent débuter brutalement et évoluer rapidement, parfois chez des personnes qui étaient en parfaite santé. Il en existe plusieurs groupes, appelés sérogroupes, dont les principaux en France sont A, B, C, W et Y."
       }
     },
     {
@@ -282,7 +282,7 @@
         "fr": "Pourquoi une infection à méningocoque peut-elle être grave ?"
       },
       "a": {
-        "fr": "Elle peut provoquer une méningite ou une infection du sang, qui évoluent parfois en quelques heures chez une personne en bonne santé. Elle peut laisser des séquelles durables et être mortelle. Une fièvre accompagnée de taches rouges ou violacées sur la peau est une urgence. Il faut appeler le 15 immédiatement."
+        "fr": "Les infections invasives à méningocoque peuvent évoluer rapidement et nécessitent une prise en charge médicale urgente. Elles peuvent entraîner des complications importantes ou des séquelles durables et, dans certains cas, être mortelles. Une fièvre accompagnée de taches rouges ou violacées sur la peau est une urgence, il faut appeler le 15 immédiatement. La vaccination permet de réduire le risque de certaines de ces infections."
       }
     },
     {
@@ -400,7 +400,7 @@
         "fr": "Combien de doses sont nécessaires ?"
       },
       "a": {
-        "fr": "Pour le vaccin ACWY, une seule dose. Pour le méningocoque B, l'équipe utilise le vaccin Bexsero, avec 2 doses espacées d'au moins 1 mois. Il existe aussi le vaccin Trumenba, qui se fait en 2 ou 3 doses selon le schéma. Une vaccination B commencée avec un vaccin se termine avec le même vaccin."
+        "fr": "Pour la vaccination contre les méningocoques ACWY, une seule dose est recommandée. Pour le méningocoque B, l'équipe utilise le vaccin Bexsero, avec 2 doses espacées d'au moins 1 mois. Il existe aussi le vaccin Trumenba, qui se fait en 2 ou 3 doses selon le schéma. Une vaccination B commencée avec un vaccin se termine avec le même vaccin. Le professionnel de santé vérifie le carnet de santé afin de déterminer les vaccinations nécessaires et de confirmer le schéma adapté."
       }
     },
     {
@@ -450,7 +450,7 @@
         "fr": "Les vaccins sont-ils sûrs ?"
       },
       "a": {
-        "fr": "Oui. Avant d'être autorisés, les vaccins sont évalués sur leur qualité, leur efficacité et leur sécurité. Ils restent ensuite surveillés en permanence. Comme tout médicament, ils peuvent avoir des effets indésirables, mais leurs bénéfices sont bien supérieurs aux risques."
+        "fr": "Oui. Avant d'être autorisés, les vaccins sont évalués pour vérifier leur qualité, leur efficacité et leur sécurité. Après leur commercialisation, ils continuent d'être surveillés afin de détecter et d'évaluer les éventuels effets indésirables."
       }
     },
     {
@@ -472,7 +472,7 @@
         "fr": "Quels sont les effets indésirables les plus fréquents ?"
       },
       "a": {
-        "fr": "Une douleur, une rougeur ou un gonflement au point d'injection, une fatigue, des maux de tête et parfois une fièvre légère. Ces effets sont bénins et disparaissent en général en 1 à 3 jours. Chez les adolescents, un malaise au moment de l'injection est assez fréquent. Il est lié au stress de la piqûre plus qu'au vaccin, et c'est l'une des raisons de la surveillance après l'injection."
+        "fr": "Après une vaccination, il est fréquent d'avoir une douleur ou une petite rougeur au niveau du bras, parfois accompagnée d'une légère fatigue. Ces réactions sont généralement bénignes, temporaires et disparaissent spontanément en 1 à 2 jours. Chez les adolescents, un malaise au moment de l'injection est assez fréquent. Il est lié au stress de la piqûre plus qu'au vaccin."
       }
     },
     {
@@ -483,7 +483,7 @@
         "fr": "Existe-t-il des effets indésirables graves ?"
       },
       "a": {
-        "fr": "Ils sont très rares. Une réaction allergique grave est exceptionnelle et survient en général dans les minutes qui suivent l'injection. L'équipe est formée et équipée pour la prendre en charge immédiatement. Il est important de signaler toute allergie avant la vaccination."
+        "fr": "Les effets indésirables graves sont exceptionnels. Les vaccins sont surveillés en continu pour garantir leur sécurité. Après l'injection, l'élève reste quelques minutes sous surveillance par l'équipe de vaccination. Il est important de signaler toute allergie avant la vaccination."
       }
     },
     {
@@ -494,7 +494,7 @@
         "fr": "Les vaccins peuvent-ils provoquer une infertilité ?"
       },
       "a": {
-        "fr": "Non. Aucune étude ne montre de lien entre les vaccins et l'infertilité. Ces vaccins sont utilisés depuis de nombreuses années et leur sécurité est surveillée en continu."
+        "fr": "Non. Les études scientifiques disponibles ne montrent pas de lien entre les vaccins et l'infertilité. Les vaccins sont utilisés depuis de nombreuses années et leur sécurité est surveillée en continu. À ce jour, aucun élément scientifique ne montre que la vaccination puisse avoir un effet sur la fertilité future."
       }
     },
     {
@@ -505,7 +505,7 @@
         "fr": "Est-ce aussi sûr qu'en cabinet médical ?"
       },
       "a": {
-        "fr": "Oui. La vaccination au lycée suit les mêmes règles de sécurité, d'hygiène, de traçabilité et de surveillance que dans tout autre lieu de vaccination."
+        "fr": "Oui. La vaccination au lycée est réalisée selon les mêmes règles de sécurité, d'hygiène, de traçabilité et de surveillance que dans les autres lieux de vaccination."
       }
     },
     {
@@ -516,7 +516,7 @@
         "fr": "Qui réalise la vaccination ?"
       },
       "a": {
-        "fr": "Des médecins et des infirmiers de l'équipe mobile de vaccination de l'Unité de santé publique de l'hôpital de Melun. Ils vérifient les informations avant l'injection, répondent aux questions et assurent la surveillance après la vaccination."
+        "fr": "La vaccination est réalisée par des professionnels de santé habilités à vacciner, notamment des médecins et des infirmiers de l'équipe mobile de vaccination de l'Unité de santé publique de l'hôpital de Melun. Ils vérifient les informations nécessaires avant l'injection, répondent aux questions des élèves et des familles et assurent la surveillance de l'élève après la vaccination."
       }
     },
     {
@@ -527,7 +527,7 @@
         "fr": "Le carnet de vaccination est-il vérifié ?"
       },
       "a": {
-        "fr": "Oui, et il est obligatoire. Sans carnet de santé ou de vaccination, la vaccination ne peut pas être réalisée."
+        "fr": "Oui. Le carnet de santé est vérifié avant la vaccination, et il est obligatoire. Cela permet de connaître les vaccins déjà reçus, d'éviter une injection inutile et de déterminer précisément les doses qui restent éventuellement nécessaires."
       }
     },
     {
@@ -582,7 +582,7 @@
         "fr": "La vaccination au lycée est-elle obligatoire ?"
       },
       "a": {
-        "fr": "Non. Les vaccinations proposées sont recommandées, mais elles ne sont pas imposées."
+        "fr": "Non. La vaccination proposée est recommandée et nécessite l'accord des parents pour un élève mineur, ou celui de l'élève lui-même s'il est majeur. Elle n'est pas imposée."
       }
     },
     {
@@ -615,7 +615,7 @@
         "fr": "Faut-il une autorisation parentale ?"
       },
       "a": {
-        "fr": "Oui pour un élève mineur. Non pour un élève majeur. Si un seul parent exerce l'autorité parentale, le formulaire prévoit cette situation."
+        "fr": "Oui pour un élève mineur. Une autorisation parentale est nécessaire pour le vacciner, et sans autorisation valide la vaccination ne sera pas réalisée. Si un seul parent exerce l'autorité parentale, le formulaire prévoit cette situation. Non pour un élève majeur, qui donne lui-même son consentement."
       }
     },
     {
@@ -637,7 +637,7 @@
         "fr": "Un parent peut-il refuser pour son enfant mineur ?"
       },
       "a": {
-        "fr": "Oui. Sans l'accord des parents, la vaccination d'un élève mineur n'est pas réalisée. Les familles peuvent prendre le temps de s'informer et [[contacter l'équipe|email]] pour poser leurs questions."
+        "fr": "Oui. L'accord des parents est nécessaire pour que la vaccination d'un élève mineur soit réalisée. Vous pouvez prendre le temps de vous informer et poser toutes vos questions à [[notre équipe|email]] avant de prendre votre décision."
       }
     }
   ]

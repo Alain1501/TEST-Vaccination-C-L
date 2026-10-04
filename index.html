@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Vaccination des adolescents – Île-de-France</title>
+  <meta name="description" content="Vaccination des adolescents en Île-de-France. Parcours collège et parcours lycée, proposés par l’Unité de santé publique de l’hôpital de Melun et son équipe mobile de vaccination."/>
+  <meta name="robots" content="index, follow"/>
+  <script>
+    /* Ancien lien vers la section contact du collège (formulaire d'autorisation) */
+    if (location.hash === '#contactCard') { location.replace('college.html' + location.search + '#contactCard'); }
+  </script>
+  <script src="js/parcours.js" data-page="hub"></script>
+  <style>
+    :root{
+      --bg:#f5f7fb; --card:#ffffff; --ink:#111827; --muted:#5b6474; --line:#e5e7eb;
+      --blue:#2563eb; --college:#16a34a; --lycee:#6d28d9;
+      --font:"Helvetica Neue", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{font-family:var(--font);color:var(--ink);background:var(--bg);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+
+    /* Fond : halos lents aux couleurs des deux parcours */
+    .halo{position:fixed;inset:-20vmax;z-index:-1;pointer-events:none;
+      background:
+        radial-gradient(38vmax 38vmax at 18% 70%, rgba(22,163,74,.13), transparent 70%),
+        radial-gradient(40vmax 40vmax at 84% 64%, rgba(109,40,217,.12), transparent 70%),
+        radial-gradient(30vmax 30vmax at 50% 8%, rgba(37,99,235,.08), transparent 70%);
+      animation:drift 26s ease-in-out infinite alternate}
+    @keyframes drift{to{transform:translate3d(2vmax,-1.5vmax,0) rotate(4deg)}}
+
+    /* En-tête logos */
+    .top{background:rgba(255,255,255,.75);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    .topIn{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:clamp(14px,4vw,44px);flex-wrap:wrap}
+    .topIn img{height:38px;max-width:150px;object-fit:contain;display:block;transition:transform .3s ease}
+    .topIn a:hover img{transform:translateY(-2px)}
+
+    main{max-width:1080px;margin:0 auto;padding:clamp(28px,6vw,60px) 20px 120px}
+
+    /* Hero */
+    .hero{text-align:center;display:flex;flex-direction:column;align-items:center}
+    .fan{width:clamp(120px,22vw,170px);height:auto;overflow:visible;margin-bottom:4px}
+    .fan path{transform-origin:0 0;opacity:0;transform:rotate(var(--r,0deg));
+      animation:petal .9s cubic-bezier(.2,.9,.25,1.2) forwards;animation-delay:calc(var(--i) * 110ms + 150ms);
+      transition:filter .4s ease}
+    @keyframes petal{from{opacity:0;transform:rotate(calc(var(--r,0deg) - 70deg)) scale(.25)}to{opacity:1;transform:rotate(var(--r,0deg))}}
+    .fan path.grow{animation:none;opacity:1;transform:rotate(var(--r,0deg));transition:transform .55s cubic-bezier(.2,.9,.25,1.25),filter .4s ease}
+    body.hoverCollege .fan .pc, body.hoverLycee .fan .pl{transform:rotate(var(--r,0deg)) scale(1.14)}
+    body.hoverCollege .fan path:not(.pc), body.hoverLycee .fan path:not(.pl){filter:saturate(.35) opacity(.5)}
+
+    h1{margin:8px 0 0;font-size:clamp(34px,6.4vw,62px);line-height:1.04;letter-spacing:-.03em;font-weight:800}
+    h1 .w{display:inline-block;opacity:0;transform:translateY(40%);animation:rise .8s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--k) * 90ms + 650ms)}
+    h1 .place{display:block;color:var(--muted);font-weight:700;font-size:.56em;letter-spacing:-.01em;margin-top:.25em}
+    @keyframes rise{to{opacity:1;transform:none}}
+    @keyframes fade{to{opacity:1}}
+    .lead{max-width:56ch;margin:18px auto 0;font-size:clamp(16px,2vw,18px);line-height:1.6;color:var(--muted);opacity:0;animation:fade .8s ease forwards 1.1s}
+    .unit{display:inline-flex;align-items:center;gap:10px;margin-top:20px;padding:9px 16px 9px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);
+      font-size:13.5px;font-weight:700;color:#1f2937;opacity:0;animation:fade .8s ease forwards 1.25s;box-shadow:0 4px 18px rgba(17,24,39,.05);text-align:left}
+    .unit img{height:24px;width:auto}
+
+    /* Cartes de parcours */
+    .paths{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,3vw,28px);margin-top:clamp(36px,6vw,56px);perspective:1200px}
+    .path{--c:#16a34a;--cs:rgba(22,163,74,.14);--cl:rgba(22,163,74,.45);
+      position:relative;display:flex;flex-direction:column;min-height:330px;padding:30px 30px 26px;border-radius:26px;
+      text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);overflow:hidden;isolation:isolate;
+      box-shadow:0 1px 0 rgba(17,24,39,.03),0 18px 40px -22px var(--cl);
+      transform:perspective(1200px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0px));
+      transition:transform .25s ease,box-shadow .45s ease,border-color .45s ease;
+      opacity:0;animation:cardIn 1s cubic-bezier(.2,.85,.25,1) forwards;animation-delay:var(--d)}
+    .path.lycee{--c:#6d28d9;--cs:rgba(109,40,217,.13);--cl:rgba(109,40,217,.45)}
+    @keyframes cardIn{from{opacity:0;transform:translateY(46px) scale(.96)}to{opacity:1;transform:none}}
+    .path.ready{animation:none;opacity:1}
+    .path::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.75;transition:opacity .4s ease;
+      background:radial-gradient(520px circle at var(--mx,80%) var(--my,0%), var(--cs), transparent 60%)}
+    .path::after{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:var(--c);transform-origin:left;transform:scaleX(.18);transition:transform .7s cubic-bezier(.2,.9,.25,1)}
+    .path:hover,.path:focus-visible{--ty:-6px;border-color:var(--cl);box-shadow:0 1px 0 rgba(17,24,39,.03),0 34px 60px -24px var(--cl)}
+    .path:hover::after,.path:focus-visible::after{transform:scaleX(1)}
+    .path:hover::before{opacity:1}
+    .path:focus-visible{outline:3px solid var(--c);outline-offset:4px}
+
+    .levels{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+    .levels span{padding:6px 12px;border-radius:999px;font-size:13px;font-weight:800;color:var(--c);background:var(--cs);
+      transition:transform .4s cubic-bezier(.2,.9,.25,1.3)}
+    .path:hover .levels span{transform:translateY(-3px)}
+    .path:hover .levels span:nth-child(2){transition-delay:.05s}
+    .path:hover .levels span:nth-child(3){transition-delay:.1s}
+
+    .path h2{margin:0;font-size:clamp(28px,3.6vw,40px);line-height:1.05;letter-spacing:-.025em;font-weight:800}
+    .path h2 b{display:block;color:var(--c)}
+    .path p{margin:14px 0 0;color:var(--muted);font-size:15.5px;line-height:1.6;max-width:40ch}
+    .go{margin-top:auto;padding-top:26px;display:flex;align-items:center;gap:12px;font-weight:800;font-size:15px}
+    .go i{position:relative;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--c);color:#fff;
+      box-shadow:0 10px 22px -8px var(--c);transition:transform .5s cubic-bezier(.2,.9,.25,1.3)}
+    .go i::before{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--c);opacity:0}
+    .path:hover .go i{transform:translateX(6px)}
+    .path:hover .go i::before{animation:ring 1.4s ease-out infinite}
+    @keyframes ring{0%{opacity:.6;transform:scale(.8)}100%{opacity:0;transform:scale(1.5)}}
+    .go svg{width:20px;height:20px}
+    .mark{position:absolute;right:-26px;bottom:-30px;width:180px;height:180px;z-index:-1;opacity:.1;color:var(--c);
+      transition:transform .9s cubic-bezier(.2,.9,.25,1),opacity .5s ease}
+    .path:hover .mark{transform:rotate(-14deg) scale(1.12);opacity:.18}
+
+    /* Contact */
+    .foot{margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;opacity:0;animation:fade .8s ease forwards 1.9s}
+    .foot a{display:flex;flex-direction:column;gap:3px;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.75);
+      border:1px solid var(--line);text-decoration:none;font-size:14px;transition:transform .3s ease,border-color .3s ease}
+    .foot a:hover{transform:translateY(-3px);border-color:#c7d2fe}
+    .foot small{font-size:12px;color:var(--muted);font-weight:700}
+    .credit{margin-top:22px;text-align:center;color:var(--muted);font-size:12.5px}
+
+    @media (max-width:760px){
+      .paths{grid-template-columns:1fr}
+      .path{min-height:0;padding:24px 22px 22px}
+      .mark{width:130px;height:130px}
+      .topIn img{height:30px;max-width:110px}
+      .unit{font-size:12.5px;border-radius:18px}
+    }
+    @media (prefers-reduced-motion: reduce){
+      *,*::before,*::after{animation-duration:.001ms !important;animation-delay:0s !important;transition-duration:.001ms !important}
+      .fan path,h1 .w,.lead,.unit,.path,.foot{opacity:1 !important}
+      .halo{animation:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="halo" aria-hidden="true"></div>
+
+  <header class="top">
+    <div class="topIn">
+      <a href="https://www.iledefrance.ars.sante.fr/" target="_blank" rel="noopener" aria-label="Agence Régionale de Santé Île-de-France"><img src="img/ARS.png" alt="Agence Régionale de Santé Île-de-France"></a>
+      <a href="https://www.ameli.fr/assure/sante/themes/vaccination/vaccins-recommandes" target="_blank" rel="noopener" aria-label="Assurance Maladie"><img src="img/AM.png" alt="Assurance Maladie"></a>
+      <a href="https://www.ghsif.fr/" target="_blank" rel="noopener" aria-label="Groupe Hospitalier de Melun"><img src="img/CHMELUN.png" alt="Groupe Hospitalier de Melun"></a>
+      <a href="#contact" aria-label="Équipe Mobile de Vaccination"><img src="img/EMV.png" alt="Équipe Mobile de Vaccination"></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <!-- L'éventail du site, dont le pétale vert (collège) et le pétale violet (lycée) répondent aux cartes -->
+      <svg class="fan" viewBox="0 0 420 350" aria-hidden="true">
+        <g transform="translate(210 300)">
+          <path style="--i:0" d="M0 0 C-150 -40 -170 -170 -95 -210 C-40 -170 -20 -80 0 0Z" fill="#2563eb"/>
+          <path style="--i:1;--r:-10deg" class="pc" d="M0 0 C-80 -90 -70 -240 0 -270 C60 -220 40 -90 0 0Z" fill="#16a34a"/>
+          <path style="--i:2;--r:9deg" class="pl" d="M0 0 C-80 -90 -70 -240 0 -270 C60 -220 40 -90 0 0Z" fill="#6d28d9"/>
+          <path style="--i:3" d="M0 0 C-10 -120 60 -250 140 -240 C160 -170 90 -70 0 0Z" fill="#ffd800"/>
+          <path style="--i:4" d="M0 0 C50 -90 170 -160 225 -110 C215 -40 110 -10 0 0Z" fill="#f1861b"/>
+          <path style="--i:5" d="M0 -20 C80 -60 190 -50 200 10 C160 50 70 30 0 -20Z" fill="#be163a"/>
+        </g>
+      </svg>
+
+      <h1>
+        <span class="w" style="--k:0">Vaccination</span> <span class="w" style="--k:1">des</span> <span class="w" style="--k:2">adolescents</span>
+        <span class="place"><span class="w" style="--k:3">Île-de-France</span></span>
+      </h1>
+      <p class="lead">Ce site accompagne les adolescents et leurs familles tout au long de leur parcours vaccinal, du collège au lycée. Choisissez votre parcours pour trouver les informations adaptées.</p>
+      <div class="unit"><img src="img/EMV.png" alt="">Unité de santé publique de l’hôpital de Melun – équipe mobile de vaccination</div>
+    </section>
+
+    <section class="paths" aria-label="Choisir un parcours">
+      <a class="path college" href="college.html" data-pt="college" style="--d:1.35s" data-hover="hoverCollege">
+        <div class="levels"><span>5e</span><span>4e</span></div>
+        <h2>Vaccination <b>au collège</b></h2>
+        <p>Informations sur les vaccins, dates de vaccination dans les collèges et autorisation parentale.</p>
+        <div class="go"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i>Accéder au parcours collège</div>
+        <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg>
+      </a>
+
+      <a class="path lycee" href="lycee.html" data-pt="lycee" style="--d:1.5s" data-hover="hoverLycee">
+        <div class="levels"><span>Seconde</span><span>Première</span><span>Terminale</span></div>
+        <h2>Vaccination <b>au lycée</b></h2>
+        <p>Vérifier et compléter ses vaccinations, HPV, méningocoques ACWY et B, rappels.</p>
+        <div class="go"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i>Accéder au parcours lycée</div>
+        <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-6h6v6"/><path d="M12 4V1.5"/></svg>
+      </a>
+    </section>
+
+    <section class="foot" id="contact" aria-label="Contact">
+      <a href="https://maps.app.goo.gl/zGLgVufgVPTTqRAg8" target="_blank" rel="noopener"><small>Adresse</small>8 Rue de Vaux, 77000 Melun</a>
+      <a href="tel:0181742850"><small>Téléphone</small>01 81 74 28 50</a>
+      <a href="tel:0181743247"><small>Téléphone</small>01 81 74 32 47</a>
+      <a href="mailto:vaccin-hpv@ghsif.fr"><small>Email</small>vaccin-hpv@ghsif.fr</a>
+    </section>
+    <p class="credit">Unité de santé publique de l’hôpital de Melun – équipe mobile de vaccination</p>
+  </main>
+
+  <script>
+    (function(){
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      /* Une fois l'éventail ouvert, les pétales deviennent réactifs au survol des cartes */
+      document.querySelectorAll('.fan path').forEach(function(p){
+        p.addEventListener('animationend', function(){ p.classList.add('grow'); });
+        if(reduce) p.classList.add('grow');
+      });
+      /* Cartes : inclinaison suivant le pointeur, lumière qui suit la souris, lien avec l'éventail */
+      document.querySelectorAll('.path').forEach(function(card){
+        var cls = card.getAttribute('data-hover');
+        card.addEventListener('animationend', function(e){ if(e.target === card) card.classList.add('ready'); });
+        if(reduce) card.classList.add('ready');
+        card.addEventListener('pointerenter', function(){ document.body.classList.add(cls); });
+        card.addEventListener('pointerleave', function(){
+          document.body.classList.remove(cls);
+          card.style.setProperty('--rx','0deg'); card.style.setProperty('--ry','0deg');
+        });
+        card.addEventListener('focus', function(){ document.body.classList.add(cls); });
+        card.addEventListener('blur', function(){ document.body.classList.remove(cls); });
+        card.addEventListener('pointermove', function(e){
+          var r = card.getBoundingClientRect();
+          var px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+          card.style.setProperty('--mx', (px*100)+'%'); card.style.setProperty('--my', (py*100)+'%');
+          if(reduce || e.pointerType !== 'mouse' || !card.classList.contains('ready')) return;
+          card.style.setProperty('--ry', ((px-.5)*7)+'deg'); card.style.setProperty('--rx', ((.5-py)*6)+'deg');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

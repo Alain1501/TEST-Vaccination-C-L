@@ -649,8 +649,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, .btn:focus-visible,
 </style>
         <link href="../../Documents/Pinegrow%20Projects/Tailwind-CSS-20260203-211032/tailwind_theme/tailwind.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/contact.css?v=20261004-2">
-<link rel="stylesheet" href="../css/effets.css?v=20261004-4">
-<script src="../js/effets.js?v=20261004-4" data-accent="college" defer></script>
+<link rel="stylesheet" href="../css/effets.css?v=20261006-1">
+<script src="../js/effets.js?v=20261006-1" data-accent="college" defer></script>
 </head>
     <body>
         <div id="scrollProgress"></div>
@@ -1582,47 +1582,54 @@ else {
   // nombre le plus significatif du paragraphe pour l'animer comme un compteur,
   // sans jamais modifier le texte source affiché au repos.
   function buildAnimatedText(container, text){
+    // Lettre : un paragraphe par bloc séparé d'une ligne vide, passages entre ** ** en gras
     container.textContent = '';
-    container.classList.add('scrollReadText');
+    container.classList.add('scrollReadText', 'letterText');
     if(!text){ return; }
-
+    const plain = text.replace(/\*\*/g, '');
     const re = /\d[\d\s.,]*\d/g;
     let match, best = null;
-    while((match = re.exec(text))){
+    while((match = re.exec(plain))){
       const digits = match[0].replace(/\D/g, '');
       const value = parseInt(digits, 10);
       const looksLikeYear = digits.length === 4 && value >= 1900 && value <= 2100;
-      if(digits.length >= 3 && !looksLikeYear && (!best || digits.length > best.digits.length)){
-        best = { text: match[0], index: match.index, digits };
+      if(digits.length >= 3 && !looksLikeYear && !/^\d{4}-/.test(plain.slice(match.index, match.index + 6)) && (!best || digits.length > best.digits.length)){
+        best = { text: match[0], digits };
       }
     }
-
-    const appendWords = (str) => {
-      str.split(/(\s+)/).forEach(tok => {
-        if(tok === '') return;
-        if(/^\s+$/.test(tok)){
-          container.appendChild(document.createTextNode(tok));
-        } else {
+    let counterDone = false;
+    const paras = text.split(/\n\s*\n/);
+    paras.forEach((para, pi) => {
+      const p = document.createElement('p');
+      p.className = 'letterP' + (pi === 0 && para.trim().length < 70 && /[,،:：]\s*$/.test(para.trim()) ? ' letterGreet' : '');
+      let bold = false;
+      const addWords = (str) => {
+        str.split(/(\*\*|\s+)/).forEach(tok => {
+          if(!tok) return;
+          if(tok === '**'){ bold = !bold; return; }
+          if(/^\s+$/.test(tok)){ p.appendChild(document.createTextNode(' ')); return; }
           const span = document.createElement('span');
-          span.className = 'fadeWord';
+          span.className = 'fadeWord' + (bold ? ' b' : '');
           span.textContent = tok;
-          container.appendChild(span);
-        }
-      });
-    };
-
-    if(!best){ appendWords(text); return; }
-
-    appendWords(text.slice(0, best.index));
-
-    const counterSpan = document.createElement('span');
-    counterSpan.className = 'fadeWord counterNum';
-    counterSpan.dataset.target = best.digits;
-    counterSpan.dataset.original = best.text;
-    counterSpan.textContent = best.text; // toujours affiché tel quel par défaut, jamais bloqué à 0
-    container.appendChild(counterSpan);
-
-    appendWords(text.slice(best.index + best.text.length));
+          p.appendChild(span);
+        });
+      };
+      const idx = (!counterDone && best) ? para.indexOf(best.text) : -1;
+      if(idx > -1){
+        counterDone = true;
+        addWords(para.slice(0, idx));
+        const counterSpan = document.createElement('span');
+        counterSpan.className = 'fadeWord counterNum' + (bold ? ' b' : '');
+        counterSpan.dataset.target = best.digits;
+        counterSpan.dataset.original = best.text;
+        counterSpan.textContent = best.text;
+        p.appendChild(counterSpan);
+        addWords(para.slice(idx + best.text.length));
+      } else {
+        addWords(para);
+      }
+      container.appendChild(p);
+    });
   }
 
   function animateCounter(span){
@@ -1716,11 +1723,22 @@ else {
       buildAnimatedText(body, t(introBlock.body, '') || t(introBlock.text, ''));
       root.appendChild(body);
 
-      const sig = (typeof introBlock.signature === 'string') ? introBlock.signature : t(introBlock.signature, '');
-      if(sig){
+      // Signature présentée comme sur la lettre papier : nom et fonction centrés, logos à droite
+      const sigName = t(introBlock.signature_name, '') || ((typeof introBlock.signature === 'string') ? introBlock.signature : t(introBlock.signature, ''));
+      if(sigName){
         const s = document.createElement('div');
-        s.className = 'note';
-        s.textContent = sig;
+        s.className = 'letterSign';
+        const who = document.createElement('div');
+        who.className = 'letterWho';
+        const nm = document.createElement('div'); nm.className = 'letterName'; nm.textContent = sigName;
+        const rl = document.createElement('div'); rl.className = 'letterRole'; rl.textContent = t(introBlock.signature_role, '');
+        who.appendChild(nm); who.appendChild(rl);
+        s.appendChild(document.createElement('div'));
+        s.appendChild(who);
+        const logos = document.createElement('div');
+        logos.className = 'letterLogos';
+        (introBlock.signature_logos || []).forEach(src => { const im = document.createElement('img'); im.src = src; im.alt = ''; logos.appendChild(im); });
+        s.appendChild(logos);
         root.appendChild(s);
       }
 

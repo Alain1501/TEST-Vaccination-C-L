@@ -277,6 +277,48 @@
           "mo": "Completați formularul de autorizare online"
         },
         "url": "autorisation-vaccination.html"
+      },
+      {
+        "id": "form_pdf",
+        "label": {
+          "fr": "Formulaire d’autorisation PDF",
+          "en": "Consent form (PDF)",
+          "ar": "استمارة الموافقة (PDF)",
+          "tr": "Onay formu (PDF)",
+          "ps": "د اجازې فورمه (PDF)",
+          "ku": "فۆرمی ڕەزامەندی (PDF)",
+          "ro": "Formular de autorizare (PDF)",
+          "ka": "ნებართვის ფორმა (PDF)",
+          "sq": "Formulari i autorizimit (PDF)",
+          "am": "የፈቃድ ቅጽ (PDF)",
+          "zh": "同意书（PDF）",
+          "prs": "فورم اجازه (PDF)",
+          "es": "Formulario de autorización (PDF)",
+          "pt": "Formulário de autorização (PDF)",
+          "ru": "Форма разрешения (PDF)",
+          "uk": "Форма дозволу (PDF)",
+          "mo": "Formular de autorizare (PDF)"
+        },
+        "hint": {
+          "fr": "À télécharger, imprimer, remplir et envoyer à vaccin-hpv@ghsif.fr",
+          "en": "Download, print, fill in and send to vaccin-hpv@ghsif.fr",
+          "ar": "للتحميل والطباعة والملء والإرسال إلى vaccin-hpv@ghsif.fr",
+          "tr": "İndirin, yazdırın, doldurun ve vaccin-hpv@ghsif.fr adresine gönderin",
+          "ps": "ډاونلوډ، چاپ او ډک یې کړئ او vaccin-hpv@ghsif.fr ته یې ولېږئ",
+          "ku": "دایبگرە، چاپی بکە، پڕی بکەرەوە و بینێرە بۆ vaccin-hpv@ghsif.fr",
+          "ro": "De descărcat, tipărit, completat și trimis la vaccin-hpv@ghsif.fr",
+          "ka": "ჩამოტვირთეთ, ამობეჭდეთ, შეავსეთ და გამოგზავნეთ vaccin-hpv@ghsif.fr-ზე",
+          "sq": "Shkarkojeni, printojeni, plotësojeni dhe dërgojeni te vaccin-hpv@ghsif.fr",
+          "am": "ያውርዱ፣ ያትሙ፣ ይሙሉ እና ወደ vaccin-hpv@ghsif.fr ይላኩ",
+          "zh": "下载、打印、填写后发送至 vaccin-hpv@ghsif.fr",
+          "prs": "دانلود، چاپ و پر کنید و به vaccin-hpv@ghsif.fr بفرستید",
+          "es": "Para descargar, imprimir, rellenar y enviar a vaccin-hpv@ghsif.fr",
+          "pt": "Para descarregar, imprimir, preencher e enviar para vaccin-hpv@ghsif.fr",
+          "ru": "Скачайте, распечатайте, заполните и отправьте на vaccin-hpv@ghsif.fr",
+          "uk": "Завантажте, роздрукуйте, заповніть і надішліть на vaccin-hpv@ghsif.fr",
+          "mo": "De descărcat, tipărit, completat și trimis la vaccin-hpv@ghsif.fr"
+        },
+        "url": "../pdf/formulaire-autorisation-lycee-2026-2027.pdf"
       }
     ],
     "videos": []

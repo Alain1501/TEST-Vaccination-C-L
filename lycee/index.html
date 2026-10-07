@@ -651,6 +651,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, .btn:focus-visible,
 .faqSectionHead:first-child { margin-top: 4px; }
 .gradeButtons.three .gradeCard { flex: 0 1 260px; min-width: 0; }
 @media (max-width: 480px){ .gradeButtons.three { gap: 8px; } .gradeButtons.three .gradeCard { padding: 14px 10px; gap: 6px; justify-content: space-between; } .gradeButtons.three .gradeIcon { display: none; } }
+
+/* Bouton de formulaire PDF : indication sous le bouton */
+.formBtnWrap{display:flex;flex-direction:column;align-items:center;gap:4px}
+.formBtnWrap .formBtnHint{font-size:12px;color:var(--muted);text-align:center;max-width:34ch;line-height:1.35}
+.stepActions .formBtnWrap{align-items:stretch}
+.stepActions .formBtnWrap .formBtnHint{max-width:none;align-self:center}
 </style>
         <link href="../../Documents/Pinegrow%20Projects/Tailwind-CSS-20260203-211032/tailwind_theme/tailwind.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/contact.css?v=20261004-2">
@@ -1175,6 +1181,18 @@ introTitle: {
   };
 
 
+ // Bouton de formulaire, avec une courte indication sous le bouton si le formulaire en prévoit une
+ const makeFormBtn = (f, href, cls, key) => {
+  const btn = makeBtn(t(f.label, 'Formulaire'), href, cls, key);
+  if(!f.hint) return btn;
+  const wrap = document.createElement('div');
+  wrap.className = 'formBtnWrap';
+  const hint = document.createElement('div');
+  hint.className = 'formBtnHint';
+  hint.textContent = t(f.hint, '');
+  wrap.appendChild(btn); wrap.appendChild(hint);
+  return wrap;
+ };
  const makeBtn = (label, href, cls='btn', key=null) => {
   const a = document.createElement('a');
   a.className = cls;
@@ -1396,9 +1414,9 @@ else {
     // (mêmes libellés et mêmes liens qu'à l'étape 2 "Consentement")
     (introData?.resources?.forms || []).forEach(f => {
       els.heroBtns.appendChild(
-        makeBtn(
-          t(f.label, 'Formulaire'),
-          `${f.url}${f.url.includes('?') ? '&' : '?'}lang=${encodeURIComponent(lang)}`,
+        makeFormBtn(
+          f,
+          /\.pdf$/i.test(f.url) ? f.url : `${f.url}${f.url.includes('?') ? '&' : '?'}lang=${encodeURIComponent(lang)}`,
           'btn btn-cta-animated'
         )
       );
@@ -1676,11 +1694,11 @@ else {
     // 2) Autres vaccins -> notre propre formulaire HTML d'autorisation
     (introData?.resources?.forms || []).forEach(f => {
       group.appendChild(
-        makeBtn(
-          t(f.label, 'Formulaire'),
-          `${f.url}${f.url.includes('?') ? '&' : '?'}lang=${encodeURIComponent(lang)}`,
+        makeFormBtn(
+          f,
+          /\.pdf$/i.test(f.url) ? f.url : `${f.url}${f.url.includes('?') ? '&' : '?'}lang=${encodeURIComponent(lang)}`,
           'btn',
-          f.id === 'form_hpv_acwy' ? 'form_hpv_acwy' : 'form_other'
+          f.id === 'form_pdf' ? 'form_pdf' : 'form_other'
         )
       );
     });
@@ -1860,8 +1878,10 @@ div.addEventListener('click', (e) => {
     }
 
     // ÉTAPE 2 — Consentement : les deux formulaires, style identique
-    if (step.number === 2 && ['form_hpv_acwy','form_other'].includes(key)) {
-      group.appendChild(clone);
+    if (step.number === 2 && ['form_hpv_acwy','form_other','form_pdf'].includes(key)) {
+      // Le bouton PDF garde son indication en dessous
+      const wrap = btn.parentElement && btn.parentElement.classList.contains('formBtnWrap') ? btn.parentElement.cloneNode(true) : clone;
+      group.appendChild(wrap);
     }
 
     // ÉTAPE 3 — Vaccination (bouton email retiré)
